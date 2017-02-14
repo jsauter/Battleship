@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Security.AccessControl;
 using Battleship.Game.Exceptions;
 
 namespace Battleship.Game.Models
@@ -15,11 +14,15 @@ namespace Battleship.Game.Models
         public Coordinate End { get; set; } 
         public int Length { get; set; }
 
+        private int _hitCount;
+
         protected ShipBase(Coordinate start, Coordinate end, int length)
         {
             Start = start;
             End = end;
             Length = length;
+
+            _hitCount = 0;
 
             ValidateShip();
         }
@@ -73,12 +76,31 @@ namespace Battleship.Game.Models
         {
             var rectangle = new Rectangle(Start.X, Start.Y, Start.Y - End.Y != 0 ? 1 : Length, Start.X - End.X != 0 ? 1 : Length);
 
-            return rectangle.Contains(shotCoordinate.X, shotCoordinate.Y);
+            var isHit = rectangle.Contains(shotCoordinate.X, shotCoordinate.Y);
 
-            //return ((Start.X <= shotCoordinate.X) && (shotCoordinate.X <= End.X))
-            //        || (End.X <= shotCoordinate.X) && (shotCoordinate.X <= Start.X) &&
-            //        (Start.Y <= shotCoordinate.Y) && (shotCoordinate.Y <= End.Y)
-            //        || ((End.Y <= shotCoordinate.Y) && (shotCoordinate.X <= Start.Y));
+            if (isHit)
+            {
+                _hitCount++;
+
+                if (_hitCount == Length)
+                {
+                    NotifyShipSunk();
+                }
+            }
+
+            return isHit;
+        }
+
+        public event EventHandler ShipSunk;
+
+        void NotifyShipSunk()
+        {
+            OnShipSunk(new ShipSunkEventArgs());
+        }
+
+        protected virtual void OnShipSunk(ShipSunkEventArgs shipSunkEventArgs)
+        {
+            ShipSunk?.Invoke(this, shipSunkEventArgs);
         }
     }
 }

@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bindings.cs" />
+    <Compile Include="CoordinateTranslator.cs" />
+    <Compile Include="Exceptions\InvalidInputException.cs" />
+    <Compile Include="GameOrchestrator.cs" />
+    <Compile Include="ICoordinateTranslator.cs" />
+    <Compile Include="IGameOrchestrator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

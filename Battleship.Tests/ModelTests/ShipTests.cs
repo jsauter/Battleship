@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Battleship.Game.Exceptions;
 using Battleship.Game.Models;
@@ -7,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Battleship.Tests.ModelTests
 {
     [TestClass]
-    public class CruiserTests
+    public class ShipTests
     {
         [TestMethod]
         public void CreateCruiserVertical()
@@ -181,5 +182,26 @@ namespace Battleship.Tests.ModelTests
             Assert.IsFalse(cruiser.IsHit(miss11));
             Assert.IsFalse(cruiser.IsHit(miss12));
         }
+
+        // This tests that an event is propogated when a ship is sunk
+
+        [TestMethod]
+        public void SinkingAShipRaisesEvent()
+        {
+            var receivedEvents = new List<string>();
+
+            var ship = new Cruiser(new Coordinate(1,1), new Coordinate(1,3));
+
+            ship.ShipSunk += delegate(object sender, EventArgs e)
+            {
+                receivedEvents.Add("Ship sunk!");
+            };
+
+            ship.IsHit(new Coordinate(1, 1));
+            ship.IsHit(new Coordinate(1, 2));
+            ship.IsHit(new Coordinate(1, 3));
+
+            Assert.AreEqual(1, receivedEvents.Count);            
+        }        
     }
 }

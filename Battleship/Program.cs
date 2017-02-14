@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Battleship.Dependencies;
+using Ninject;
+using Ninject.Modules;
 
 namespace Battleship
 {
@@ -10,6 +9,23 @@ namespace Battleship
     {
         static void Main(string[] args)
         {
+            Bootstrap();
+        }
+
+        private static void Bootstrap()
+        {
+            var kernel = new StandardKernel(new Bindings());
+
+            var modules = new List<INinjectModule>()
+            {
+                new GameBindings()
+            };
+
+            kernel.Load(modules);
+
+            var gameOrchestrator = kernel.Get<IGameOrchestrator>();
+
+            gameOrchestrator.StartGame();
         }
     }
 }
