@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,10 +46,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\ShipCoordinatesInvalidException.cs" />
+    <Compile Include="Exceptions\ShotOffBoardException.cs" />
     <Compile Include="Models\Board.cs" />
     <Compile Include="Models\Coordinate.cs" />
     <Compile Include="Models\Cruiser.cs" />
     <Compile Include="Models\IBoard.cs" />
+    <Compile Include="Models\IShip.cs" />
     <Compile Include="Models\ShipBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

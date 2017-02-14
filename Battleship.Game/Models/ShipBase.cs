@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Security.AccessControl;
 using Battleship.Game.Exceptions;
 
 namespace Battleship.Game.Models
@@ -7,7 +9,7 @@ namespace Battleship.Game.Models
     /// Ship base class.  
     /// You can use this as a base type if you want to add more ships to the game by just extending it and setting the length.  Ship lengths never change.
     /// </summary>
-    public abstract class ShipBase
+    public abstract class ShipBase : IShip
     {
         public Coordinate Start { get; set; }
         public Coordinate End { get; set; } 
@@ -65,6 +67,18 @@ namespace Battleship.Game.Models
 
             
             return isValid;
+        }
+
+        public bool IsHit(Coordinate shotCoordinate)
+        {
+            var rectangle = new Rectangle(Start.X, Start.Y, Start.Y - End.Y != 0 ? 1 : Length, Start.X - End.X != 0 ? 1 : Length);
+
+            return rectangle.Contains(shotCoordinate.X, shotCoordinate.Y);
+
+            //return ((Start.X <= shotCoordinate.X) && (shotCoordinate.X <= End.X))
+            //        || (End.X <= shotCoordinate.X) && (shotCoordinate.X <= Start.X) &&
+            //        (Start.Y <= shotCoordinate.Y) && (shotCoordinate.Y <= End.Y)
+            //        || ((End.Y <= shotCoordinate.Y) && (shotCoordinate.X <= Start.Y));
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Battleship.Tests.ModelTests
         [TestMethod]
         public void CanPlaceOneShip()
         {
-            var board = new Board(8, 8);
+            var board = new Board("", 8, 8);
 
             var ship = new Cruiser(new Coordinate(1, 1), new Coordinate(1, 3));
 
@@ -23,7 +23,7 @@ namespace Battleship.Tests.ModelTests
         [ExpectedException(typeof(ShipCoordinatesInvalidException))]
         public void CannotPlaceShipCompletelyOffBoard()
         {
-            var board = new Board(8, 8);
+            var board = new Board("", 8, 8);
 
             var ship = new Cruiser(new Coordinate(9, 9), new Coordinate(9, 11));
 
@@ -34,7 +34,7 @@ namespace Battleship.Tests.ModelTests
         [ExpectedException(typeof(ShipCoordinatesInvalidException))]
         public void CannotPlaceShipPartiallyOffBoardXAxis()
         {
-            var board = new Board(8, 8);
+            var board = new Board("", 8, 8);
 
             var ship = new Cruiser(new Coordinate(7, 1), new Coordinate(9, 1));
 
@@ -45,7 +45,7 @@ namespace Battleship.Tests.ModelTests
         [ExpectedException(typeof(ShipCoordinatesInvalidException))]
         public void CannotPlaceShipPartiallyOffBoardYAxis()
         {
-            var board = new Board(8, 8);
+            var board = new Board("", 8, 8);
 
             var ship = new Cruiser(new Coordinate(1, 7), new Coordinate(1, 9));
 
@@ -56,7 +56,7 @@ namespace Battleship.Tests.ModelTests
         [ExpectedException(typeof(ShipCoordinatesInvalidException))]
         public void CannotPlaceShipPartiallyOffBoardYAxisNegative()
         {
-            var board = new Board(8, 8);
+            var board = new Board("", 8, 8);
 
             var ship = new Cruiser(new Coordinate(1, -1), new Coordinate(1, -3));
 
@@ -67,7 +67,7 @@ namespace Battleship.Tests.ModelTests
         [ExpectedException(typeof(ShipCoordinatesInvalidException))]
         public void CannotPlaceShipPartiallyOffBoardXAxisNegative()
         {
-            var board = new Board(8, 8);
+            var board = new Board("", 8, 8);
 
             var ship = new Cruiser(new Coordinate(-3, 3), new Coordinate(-1, 3));
 

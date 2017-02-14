@@ -3,6 +3,6 @@
     public interface IBoard
     {
         void PlaceShip(ShipBase ship);
-        void FireShot(Coordinate coordinate);
+        void FireShot(Coordinate shotCoordinate);
     }
 }

@@ -7,7 +7,6 @@ namespace Battleship.Game.Models
     /// The Board class represents a player's board in the game.  
     /// A board inherits from IBoard so we can have access to the methods defined there
     /// It has an X and Y length that represents it's size.  
-    /// We are only supporting once size of board in the game, in this case 8x8.
     /// A board contains a list of ships.  In the future, the list will allow us to add more than one ship to the game.
     /// </summary>
     public class Board : IBoard
@@ -43,8 +42,17 @@ namespace Battleship.Game.Models
             Ships.Add(ship);
         }
 
-        public void FireShot(Coordinate coordinate)
+        public void FireShot(Coordinate shotCoordinate)
         {
+            if (shotCoordinate.X < 1 || shotCoordinate.X > XLength || shotCoordinate.Y < 1 || shotCoordinate.Y > YLength)
+            {
+                throw new ShotOffBoardException("Shot fired off board.");
+            }
+
+            foreach (var ship in Ships)
+            {
+                var isHit = ship.IsHit(shotCoordinate);
+            }
         }
     }
 }
