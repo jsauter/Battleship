@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using Battleship.Game.Exceptions;
 
 namespace Battleship.Game.Models
