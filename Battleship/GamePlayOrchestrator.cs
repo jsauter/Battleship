@@ -101,7 +101,7 @@ namespace Battleship
             {
                 Console.WriteLine($"{player} Board:");
                 
-                _boardRenderer.RenderBoard(_gameState.GetBoard(player));
+                Console.WriteLine(_boardRenderer.RenderBoard(_gameState.GetBoard(player)));
             }
          
             Console.WriteLine("Game over...");

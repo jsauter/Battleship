@@ -61,6 +61,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ConsoleTests\CoordinateTranslatorTests.cs" />
+    <Compile Include="ConsoleTests\BoardRendererTests.cs" />
     <Compile Include="ModelTests\ShipTests.cs" />
     <Compile Include="ModelTests\BoardTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

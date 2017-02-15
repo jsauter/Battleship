@@ -11,7 +11,6 @@ namespace Battleship.Tests
     public class GameStateTests
     {
         private Mock<ISettingService> _settingService;
-        
 
         [TestInitialize]
         public void Initialize()

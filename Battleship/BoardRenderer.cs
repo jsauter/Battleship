@@ -11,16 +11,17 @@ namespace Battleship
     /// </summary>
     public class BoardRenderer : IBoardRenderer
     {
-        public void RenderBoard(Board board)
+        public string RenderBoard(Board board)
         {
             var boardState = board.GetBoardState();
+            
+            var stringBuilder = new StringBuilder();
 
-            Console.WriteLine("  A B C D E F G H");
+            stringBuilder.Append("  A B C D E F G H");
+            stringBuilder.Append(Environment.NewLine);
 
             for (int i = 1; i < 9; i++)
             {
-                var stringBuilder = new StringBuilder();
-
                 stringBuilder.Append($"{i} ");
                 
                 for (int j = 1; j < 9; j++)
@@ -37,8 +38,10 @@ namespace Battleship
                     }
                 }
 
-                Console.WriteLine(stringBuilder);
+                stringBuilder.Append(Environment.NewLine);
             }
+
+            return stringBuilder.ToString();
         }
     }
 }

@@ -7,6 +7,6 @@ namespace Battleship
     /// </summary>
     public interface IBoardRenderer
     {
-        void RenderBoard(Board board);
+        string RenderBoard(Board board);
     }
 }

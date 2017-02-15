@@ -10,7 +10,7 @@ Tests are currently all passing. I have covered a lot of sunny day scenarios as 
 
 ##Architecture
 
-I approached this application like games I have worked on in the past. There is an executable layer that runs a game engine in the layer below it. Game state is managed independently from the UI. 
+I approached this application like other games I have worked on in the past. There is an executable layer that runs a game engine in the layer below it. Game state is managed independently from the UI. 
 
 Dependencies are injected in using the a IoC container.
 
