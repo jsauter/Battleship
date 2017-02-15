@@ -1,5 +1,9 @@
 namespace Battleship.Game.Models
 {
+
+    /// <summary>
+    /// Class representing a cartesian point on grid based map
+    /// </summary>
     public class Coordinate
     {
         public int X { get; protected set; }

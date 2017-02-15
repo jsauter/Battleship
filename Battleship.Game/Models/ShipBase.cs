@@ -77,6 +77,11 @@ namespace Battleship.Game.Models
             return isValid;
         }
 
+        /// <summary>
+        /// Checks if a shot coordinate hits the ship
+        /// </summary>
+        /// <param name="shotCoordinate">The coordinate of where the shot was fired</param>
+        /// <returns>Boolean representing if it was a successful hit or not</returns>
         public bool IsHit(Coordinate shotCoordinate)
         {
             if (((Start.X <= shotCoordinate.X && shotCoordinate.X <= End.X) ||

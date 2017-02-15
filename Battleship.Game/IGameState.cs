@@ -3,6 +3,9 @@ using Battleship.Game.Models;
 
 namespace Battleship.Game
 {
+    /// <summary>
+    /// Interface that defines what a game state can do
+    /// </summary>
     public interface IGameState
     {
         IEnumerable<string> GetPlayerNames();

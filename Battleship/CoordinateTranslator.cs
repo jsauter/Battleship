@@ -3,9 +3,16 @@ using Battleship.Game.Models;
 
 namespace Battleship
 {
+    /// <summary>
+    /// Used to translate user input 'A1' style into cartesian points.
+    /// </summary>
     public class CoordinateTranslator : ICoordinateTranslator
     {
-
+        /// <summary>
+        /// Method to handle translation
+        /// </summary>
+        /// <param name="userInput">A string of user input, like 'A1'</param>
+        /// <returns>A coordinate calculated from the users input.</returns>
         public Coordinate TranslateCoordinate(string userInput)
         {
             var splitInput = userInput.ToCharArray();

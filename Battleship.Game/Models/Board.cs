@@ -80,11 +80,13 @@ namespace Battleship.Game.Models
         /// <param name="shotCoordinate">Coordinates of the shot</param>
         public void FireShot(Coordinate shotCoordinate)
         {
+            // check if the shot was off the board
             if (shotCoordinate.X < 1 || shotCoordinate.X > XLength || shotCoordinate.Y < 1 || shotCoordinate.Y > YLength)
             {
                 throw new BadShotException("Shot fired off board.");
             }
 
+            // check if the shot was already fired onto the board
             if (_boardState.Keys.Count(x => x.X == shotCoordinate.X && x.Y == shotCoordinate.Y) > 0)
             {
                 throw new BadShotException("A shot has already been fired at that coordinate.");
@@ -96,6 +98,10 @@ namespace Battleship.Game.Models
             }
         }
 
+        /// <summary>
+        /// Returns the hit/miss state of the player's board
+        /// </summary>
+        /// <returns>Dictionary of shots as well as if they are a hit or miss</returns>
         public Dictionary<Coordinate, ShotResult> GetBoardState()
         {
             return _boardState;

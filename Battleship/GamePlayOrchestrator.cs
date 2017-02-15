@@ -21,6 +21,9 @@ namespace Battleship
             _boardRenderer = boardRenderer;
         }
 
+        /// <summary>
+        /// Method that the bootstrapper will call to start a game.
+        /// </summary>
         public void StartGame()
         {
             Console.WriteLine("Game Starting...");

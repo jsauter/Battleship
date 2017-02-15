@@ -3,6 +3,9 @@ using Battleship.Game;
 
 namespace Battleship
 {
+    /// <summary>
+    /// A service that allows access to the app config to be injected
+    /// </summary>
     public class SettingService : ISettingService
     {
         public int BoardLength { get; }
@@ -19,6 +22,5 @@ namespace Battleship
             BoardWidth = string.IsNullOrEmpty(appSettings["BoardWidth"]) ? 8 : int.Parse(appSettings["BoardWidth"]); 
             NumberOfPlayers = string.IsNullOrEmpty(appSettings["MaxNumberOfPlayers"]) ? 8 : int.Parse(appSettings["MaxNumberOfPlayers"]);
         }
-
     }
 }

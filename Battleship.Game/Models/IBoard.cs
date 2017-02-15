@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Battleship.Game.Models
 {
+    /// <summary>
+    /// Interface representing a player's board
+    /// </summary>
     public interface IBoard
     {
         void PlaceShip(ShipBase ship);

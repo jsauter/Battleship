@@ -78,7 +78,7 @@ namespace Battleship.Tests.ModelTests
         }
 
         [TestMethod]
-        public void IsNotHit()
+        public void AShipCanBeMissed()
         {
             var cruiser = new Cruiser(new Coordinate(1, 1), new Coordinate(1, 3));
             var shot = new Coordinate(2, 6);
@@ -87,7 +87,7 @@ namespace Battleship.Tests.ModelTests
         }
 
         [TestMethod]
-        public void IsHit()
+        public void AShipCanBeHit()
         {
             var cruiser = new Cruiser(new Coordinate(1, 1), new Coordinate(1, 3));
             var shot1 = new Coordinate(1, 2);
