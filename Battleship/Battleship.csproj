@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Bindings.cs" />
     <Compile Include="BoardRenderer.cs" />
+    <Compile Include="Bootstrapper.cs" />
     <Compile Include="CoordinateTranslator.cs" />
     <Compile Include="Exceptions\InvalidInputException.cs" />
     <Compile Include="GamePlayOrchestrator.cs" />
