@@ -7,5 +7,7 @@ namespace Battleship.Game
         void AddBoard(string playerName);
         void AddShip(string playerName, Coordinate start, Coordinate end);
         void FireShot(string opposingPlayerName, Coordinate shotCoordinate);
+        string GetCurrentPlayer();
+        void MoveToNextPlayer();
     }
 }

@@ -7,10 +7,12 @@ namespace Battleship.Game
     public class GameState : IGameState
     {
         private List<Board> _boards;
+        private int _currentPlayerNumber;
 
         public GameState()
         {
             _boards = new List<Board>();
+            _currentPlayerNumber = 1;
         }
 
         public void AddBoard(string playerName)
@@ -32,6 +34,25 @@ namespace Battleship.Game
 
         public void FireShot(string opposingPlayerName, Coordinate shotCoordinate)
         {
+        }
+
+        public string GetCurrentPlayer()
+        {
+            var board = _boards[_currentPlayerNumber - 1];            
+
+            return board.PlayerName;
+        }
+
+        public void MoveToNextPlayer()
+        {
+            // increment player number unless it is second player, then send it back to 1
+            _currentPlayerNumber++;
+
+            // we don't support more than 2 players
+            if (_currentPlayerNumber == 3)
+            {
+                _currentPlayerNumber = 1;
+            }
         }
     }
 }

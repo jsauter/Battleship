@@ -1,4 +1,5 @@
-﻿using Ninject.Modules;
+﻿using Battleship.Game;
+using Ninject.Modules;
 
 namespace Battleship.Dependencies
 {
@@ -6,7 +7,7 @@ namespace Battleship.Dependencies
     {
         public override void Load()
         {
-            
+            Bind<IGameState>().To<GameState>();
         }
     }
 }

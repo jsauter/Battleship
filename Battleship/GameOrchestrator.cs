@@ -45,15 +45,15 @@ namespace Battleship
                     {
                         Console.WriteLine(ex.Message);
                     }
-
-
                 }
             }
 
             // now we take in user input over and over again until someone wins
             while (true)
             {
-                Console.WriteLine($"Player {0}");
+                Console.WriteLine(_gameState.GetCurrentPlayer());
+                Console.ReadLine();
+                _gameState.MoveToNextPlayer();
             }
 
             // print output
