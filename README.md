@@ -50,8 +50,14 @@ Feedback to the UI thread for bad data entry is done via exceptions (and handlin
 
 3) There is only one type of ship right now. If we want to add more in the future there will be a UI change as well as the need to build a ship factory
 
+4) For display, I left it so only the shots are recorded and displayed at the end, not the entire location of the ship.  This is how it would work in the real game I think.
+
 ##3rd party libraries used
 
 Ninject
 
 Moq
+
+##Question
+
+In the example screenshot, player 2 only makes 4 shots, but they sunk the ship with one hit.  This should have required 3 shots itself.  Shouldn't there have been 6 shots?

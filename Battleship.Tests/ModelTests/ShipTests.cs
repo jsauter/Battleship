@@ -205,7 +205,7 @@ namespace Battleship.Tests.ModelTests
 
             var ship = new Cruiser(new Coordinate(1,1), new Coordinate(3,1));
 
-            ship.ShipSunk += delegate(object sender, EventArgs e)
+            ship.ShipSunk += delegate
             {
                 receivedEvents.Add("Ship sunk!");
             };
@@ -225,7 +225,7 @@ namespace Battleship.Tests.ModelTests
 
             var ship = new Cruiser(new Coordinate(3, 1), new Coordinate(1, 1));
 
-            ship.ShipSunk += delegate (object sender, EventArgs e)
+            ship.ShipSunk += delegate 
             {
                 receivedEvents.Add("Ship sunk!");
             };
@@ -245,7 +245,7 @@ namespace Battleship.Tests.ModelTests
 
             var ship = new Cruiser(new Coordinate(1, 1), new Coordinate(1, 3));
 
-            ship.ShipSunk += delegate (object sender, EventArgs e)
+            ship.ShipSunk += delegate 
             {
                 receivedEvents.Add("Ship sunk!");
             };
@@ -265,7 +265,7 @@ namespace Battleship.Tests.ModelTests
 
             var ship = new Cruiser(new Coordinate(1, 3), new Coordinate(1, 1));
 
-            ship.ShipSunk += delegate (object sender, EventArgs e)
+            ship.ShipSunk += delegate 
             {
                 receivedEvents.Add("Ship sunk!");
             };
