@@ -97,7 +97,7 @@ namespace Battleship.Game
         }
 
         /// <summary>
-        /// Gets the string name of the player whos turn it is
+        /// Gets the string name of the player who's turn it is
         /// </summary>
         /// <returns>The name of the player</returns>
         public string GetCurrentPlayer()

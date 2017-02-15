@@ -37,7 +37,7 @@ namespace Battleship.Tests
 
             gameState.AddBoard("Player 1");
 
-            gameState.AddShip("Player 1", new Coordinate(1,1), new Coordinate(1, 3));
+            gameState.AddShip("Player 1", new Coordinate(1, 1), new Coordinate(1, 3));
 
             Assert.AreEqual(gameState.GetBoard("Player 1").Ships.Count, 1);
         }
@@ -156,7 +156,6 @@ namespace Battleship.Tests
             gameState.AddBoard("Player 1");
             gameState.AddBoard("Player 2");
             gameState.AddBoard("Player 3");
-
         }
     }
 }

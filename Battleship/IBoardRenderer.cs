@@ -3,7 +3,7 @@
 namespace Battleship
 {
     /// <summary>
-    /// Interface reprsenting a board renderer.
+    /// Interface representing a board renderer.
     /// </summary>
     public interface IBoardRenderer
     {

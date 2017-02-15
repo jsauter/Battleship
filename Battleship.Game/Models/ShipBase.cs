@@ -33,7 +33,7 @@ namespace Battleship.Game.Models
 
         /// <summary>
         /// Validation handles length and if the ship is horizontal or vertical as well as the right length for the placement parameters we have input
-        /// Ships should someday check if they are being palced on top of other ships
+        /// Ships should someday check if they are being placed on top of other ships
         /// </summary>
         private void ValidateShip()
         {
@@ -52,7 +52,7 @@ namespace Battleship.Game.Models
         {
             // we need to subtract from the length by 1 because the distance between two points is one less.  In the game of battleship a ship would overrun it's bounds 
             // if we used didn't take this into account
-            return Math.Sqrt(Math.Pow((End.Y - Start.Y), 2) + Math.Pow((End.X - Start.X), 2)) == (Length - 1);
+            return Math.Sqrt(Math.Pow(End.Y - Start.Y, 2) + Math.Pow(End.X - Start.X, 2)) == (Length - 1);
         }
 
         private bool IsShipHorizontalOrVertical()
@@ -61,7 +61,7 @@ namespace Battleship.Game.Models
 
             try
             {
-                //check slope to make sure horizontal or vertical
+                // check slope to make sure horizontal or vertical
                 if ((End.Y - Start.Y) / (End.X - Start.X) == 0)
                 {
                     isValid = true;
@@ -69,10 +69,9 @@ namespace Battleship.Game.Models
             }
             catch (DivideByZeroException)
             {
-                //since we are calculating slope, we should eat this divide by zero exception as a vertical line's slope is undefined
+                // since we are calculating slope, we should eat this divide by zero exception as a vertical line's slope is undefined
                 isValid = true;
             }
-
             
             return isValid;
         }
@@ -104,7 +103,7 @@ namespace Battleship.Game.Models
 
         public event EventHandler ShipSunk;
 
-        void NotifyShipSunk()
+        private void NotifyShipSunk()
         {
             OnShipSunk(new ShipSunkEventArgs(this));
         }

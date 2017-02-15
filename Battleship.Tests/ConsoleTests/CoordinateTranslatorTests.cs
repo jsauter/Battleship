@@ -41,7 +41,7 @@ namespace Battleship.Tests.ConsoleTests
         {
             var coordinateTranslator = new CoordinateTranslator();
 
-            var coordinate = coordinateTranslator.TranslateCoordinate("");
+            var coordinate = coordinateTranslator.TranslateCoordinate(string.Empty);
         }
 
         [TestMethod]

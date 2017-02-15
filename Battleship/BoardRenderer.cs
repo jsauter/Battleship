@@ -5,7 +5,6 @@ using Battleship.Game.Models;
 
 namespace Battleship
 {
-
     /// <summary>
     /// Renders a textual representation of the player's board
     /// </summary>

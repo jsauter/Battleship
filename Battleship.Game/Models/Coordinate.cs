@@ -1,6 +1,5 @@
 namespace Battleship.Game.Models
 {
-
     /// <summary>
     /// Class representing a cartesian point on grid based map
     /// </summary>

@@ -39,7 +39,7 @@ namespace Battleship.Tests.ModelTests
         [ExpectedException(typeof(ShipCoordinatesInvalidException))]
         public void ShipNotPlacedVerticallyOrHorizontallyThrowsException()
         {
-            var cruiser = new Cruiser(new Coordinate(1,1), new Coordinate(3, 2));
+            var cruiser = new Cruiser(new Coordinate(1, 1), new Coordinate(3, 2));
         }
 
         [TestMethod]
@@ -106,7 +106,6 @@ namespace Battleship.Tests.ModelTests
         /// <summary>
         /// These tests will check all border conditions as well as hits for a cruiser
         /// </summary>
-
         [TestMethod]
         public void ProximityIsHitAndMissHorzontal()
         {
@@ -203,8 +202,8 @@ namespace Battleship.Tests.ModelTests
         {
             var receivedEvents = new List<string>();
 
-            var ship = new Cruiser(new Coordinate(1,1), new Coordinate(3,1));
-
+            var ship = new Cruiser(new Coordinate(1, 1), new Coordinate(3, 1));
+            
             ship.ShipSunk += delegate
             {
                 receivedEvents.Add("Ship sunk!");

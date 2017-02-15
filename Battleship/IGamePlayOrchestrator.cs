@@ -1,7 +1,7 @@
 ﻿namespace Battleship
 {
     /// <summary>
-    /// Interface represnting an game play orchestrator
+    /// Interface representing a game play orchestrator
     /// </summary>
     public interface IGamePlayOrchestrator
     {

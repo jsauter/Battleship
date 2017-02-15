@@ -18,11 +18,7 @@ namespace Battleship.Game.Models
         public int XLength { get; protected set; }
 
         public int YLength { get; protected set; }
-
-        private readonly List<Coordinate> _shots;
-
-        public IReadOnlyCollection<Coordinate> Shots => _shots.AsReadOnly();
-
+        
         private readonly List<ShipBase> _ships;
 
         public IReadOnlyCollection<ShipBase> Ships => _ships.AsReadOnly();
@@ -41,8 +37,7 @@ namespace Battleship.Game.Models
             XLength = xLength;
             YLength = yLength;
             
-            _ships = new List<ShipBase>();
-            _shots = new List<Coordinate>();
+            _ships = new List<ShipBase>();        
             _boardState = new Dictionary<Coordinate, ShotResult>();
         }
 
@@ -54,22 +49,20 @@ namespace Battleship.Game.Models
         {
             // check if ship is legally on the board
             if (ship.Start.X > XLength || ship.End.X > XLength || ship.Start.X < 1 || ship.End.X < 1
-                || ship.Start.Y > YLength || ship.End.Y > XLength || ship.Start.Y < 1 || ship.End.Y < 1
-                )
+                || ship.Start.Y > YLength || ship.End.Y > XLength || ship.Start.Y < 1 || ship.End.Y < 1)
             {
                 throw new ShipCoordinatesInvalidException("Ship placed off the board.");
             }
 
             // TODO: when a requirement comes up to have more than one ship, we will need to check for intersections
-
             ship.ShipSunk += Ship_ShipSunk;
 
             _ships.Add(ship);
         }
 
-        private void Ship_ShipSunk(object sender,EventArgs e)
+        private void Ship_ShipSunk(object sender, EventArgs e)
         {
-            var args = (ShipSunkEventArgs) e;
+            var args = (ShipSunkEventArgs)e;
 
             NotifyGameOver(args.Ship);
         }
@@ -109,7 +102,7 @@ namespace Battleship.Game.Models
 
         public event EventHandler GameOver;
 
-        void NotifyGameOver(ShipBase ship)
+        private void NotifyGameOver(ShipBase ship)
         {
             OnNotifyGameOver(new GameOverEventArgs(PlayerName, ship));
         }

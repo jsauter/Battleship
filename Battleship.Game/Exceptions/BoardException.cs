@@ -13,7 +13,6 @@ namespace Battleship.Game.Exceptions
     {
         public BoardException(string message) : base(message)
         { 
-            
         }
     }
 }

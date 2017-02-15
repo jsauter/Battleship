@@ -6,6 +6,6 @@
     public enum ShotResult
     {
         Hit,
-        Miss,
+        Miss
     }
 }
