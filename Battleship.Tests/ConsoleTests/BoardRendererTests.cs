@@ -21,20 +21,30 @@ namespace Battleship.Tests.ConsoleTests
 
             var resultString = boardRender.RenderBoard(board);
 
-            var boardRenderRows = resultString.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+            var boardRendererRows = resultString.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
 
-            Assert.AreEqual(boardRenderRows.Length, 10);
+            // testing the right number of rows come back
+            Assert.AreEqual(boardRendererRows.Length, 10);
 
-            Assert.AreEqual(boardRenderRows[0].Length, 17);
-            Assert.AreEqual(boardRenderRows[1].Length, 18);
-            Assert.AreEqual(boardRenderRows[2].Length, 18);
-            Assert.AreEqual(boardRenderRows[3].Length, 18);
-            Assert.AreEqual(boardRenderRows[4].Length, 18);
-            Assert.AreEqual(boardRenderRows[5].Length, 18);
-            Assert.AreEqual(boardRenderRows[6].Length, 18);
-            Assert.AreEqual(boardRenderRows[7].Length, 18);
-            Assert.AreEqual(boardRenderRows[8].Length, 18);
-            Assert.AreEqual(boardRenderRows[9].Length, 0);;
+            // testing the correct width of rows
+            Assert.AreEqual(boardRendererRows[0].Length, 17);
+            Assert.AreEqual(boardRendererRows[1].Length, 18);
+            Assert.AreEqual(boardRendererRows[2].Length, 18);
+            Assert.AreEqual(boardRendererRows[3].Length, 18);
+            Assert.AreEqual(boardRendererRows[4].Length, 18);
+            Assert.AreEqual(boardRendererRows[5].Length, 18);
+            Assert.AreEqual(boardRendererRows[6].Length, 18);
+            Assert.AreEqual(boardRendererRows[7].Length, 18);
+            Assert.AreEqual(boardRendererRows[8].Length, 18);
+            Assert.AreEqual(boardRendererRows[9].Length, 0);
+
+            // testing to make sure shots are coming through
+            Assert.IsTrue(boardRendererRows[1].Contains("S"));
+            Assert.IsFalse(boardRendererRows[1].Contains("X"));
+            Assert.IsTrue(boardRendererRows[7].Contains("X"));
+            Assert.IsFalse(boardRendererRows[7].Contains("S"));
+            Assert.IsFalse(boardRendererRows[6].Contains("X"));
+            Assert.IsFalse(boardRendererRows[6].Contains("S"));
         }
     }
 }
