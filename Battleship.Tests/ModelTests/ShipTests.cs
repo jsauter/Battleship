@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Battleship.Game.Exceptions;
 using Battleship.Game.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

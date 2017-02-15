@@ -1,5 +1,4 @@
-﻿using System;
-using Battleship.Exceptions;
+﻿using Battleship.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Battleship.Tests.ConsoleTests
