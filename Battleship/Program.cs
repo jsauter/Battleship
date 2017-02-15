@@ -23,7 +23,7 @@ namespace Battleship
 
             kernel.Load(modules);
 
-            var gameOrchestrator = kernel.Get<IGameOrchestrator>();
+            var gameOrchestrator = kernel.Get<IGamePlayOrchestrator>();
 
             gameOrchestrator.StartGame();
         }

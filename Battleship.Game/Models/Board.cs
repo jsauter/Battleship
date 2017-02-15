@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Battleship.Game.Exceptions;
 
 namespace Battleship.Game.Models
@@ -11,22 +13,43 @@ namespace Battleship.Game.Models
     /// </summary>
     public class Board : IBoard
     {
-        public string PlayerName { get; set; }
-        public int XLength { get; set; }
-        public int YLength { get; set; }
-        public List<Coordinate> Shots { get; set; }
-        public List<ShipBase> Ships { get; set; }
+        public string PlayerName { get; protected set; }
 
+        public int XLength { get; protected set; }
+
+        public int YLength { get; protected set; }
+
+        private readonly List<Coordinate> _shots;
+
+        public IReadOnlyCollection<Coordinate> Shots => _shots.AsReadOnly();
+
+        private readonly List<ShipBase> _ships;
+
+        public IReadOnlyCollection<ShipBase> Ships => _ships.AsReadOnly();
+
+        private readonly Dictionary<Coordinate, ShotResult> _boardState;
+
+        /// <summary>
+        /// Creates a new board for the player. The board keeps track of what shots were placed against it and if it was a hit or a miss.
+        /// </summary>
+        /// <param name="playerName">Name of the player</param>
+        /// <param name="xLength">Horizontal size of the board</param>
+        /// <param name="yLength">Vertical size of the board</param>
         public Board(string playerName, int xLength, int yLength)
         {
             PlayerName = playerName;
             XLength = xLength;
             YLength = yLength;
-
-            Ships = new List<ShipBase>();
-            Shots = new List<Coordinate>();
+            
+            _ships = new List<ShipBase>();
+            _shots = new List<Coordinate>();
+            _boardState = new Dictionary<Coordinate, ShotResult>();
         }
 
+        /// <summary>
+        /// Places ship on the board
+        /// </summary>
+        /// <param name="ship">The ship we are placing</param>
         public void PlaceShip(ShipBase ship)
         {
             // check if ship is legally on the board
@@ -38,21 +61,56 @@ namespace Battleship.Game.Models
             }
 
             // TODO: when a requirement comes up to have more than one ship, we will need to check for intersections
-            
-            Ships.Add(ship);
+
+            ship.ShipSunk += Ship_ShipSunk;
+
+            _ships.Add(ship);
         }
 
+        private void Ship_ShipSunk(object sender,EventArgs e)
+        {
+            var args = (ShipSunkEventArgs) e;
+
+            NotifyGameOver(args.Ship);
+        }
+
+        /// <summary>
+        /// Fire a shot on the board
+        /// </summary>
+        /// <param name="shotCoordinate">Coordinates of the shot</param>
         public void FireShot(Coordinate shotCoordinate)
         {
             if (shotCoordinate.X < 1 || shotCoordinate.X > XLength || shotCoordinate.Y < 1 || shotCoordinate.Y > YLength)
             {
-                throw new ShotOffBoardException("Shot fired off board.");
+                throw new BadShotException("Shot fired off board.");
+            }
+
+            if (_boardState.Keys.Count(x => x.X == shotCoordinate.X && x.Y == shotCoordinate.Y) > 0)
+            {
+                throw new BadShotException("A shot has already been fired at that coordinate.");
             }
 
             foreach (var ship in Ships)
             {
-                var isHit = ship.IsHit(shotCoordinate);
+                _boardState.Add(shotCoordinate, ship.IsHit(shotCoordinate) ? ShotResult.Hit : ShotResult.Miss);
             }
+        }
+
+        public Dictionary<Coordinate, ShotResult> GetBoardState()
+        {
+            return _boardState;
+        }
+
+        public event EventHandler GameOver;
+
+        void NotifyGameOver(ShipBase ship)
+        {
+            OnNotifyGameOver(new GameOverEventArgs(PlayerName, ship));
+        }
+
+        protected virtual void OnNotifyGameOver(GameOverEventArgs gameOverEventArgs)
+        {
+            GameOver?.Invoke(this, gameOverEventArgs);
         }
     }
 }

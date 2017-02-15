@@ -10,9 +10,13 @@ namespace Battleship.Game.Models
     /// </summary>
     public abstract class ShipBase : IShip
     {
-        public Coordinate Start { get; set; }
-        public Coordinate End { get; set; } 
-        public int Length { get; set; }
+        public Coordinate Start { get; protected set; }
+
+        public Coordinate End { get; protected set; } 
+
+        public int Length { get; protected set; }
+
+        public string Name { get; protected set; }
 
         private int _hitCount;
 
@@ -95,7 +99,7 @@ namespace Battleship.Game.Models
 
         void NotifyShipSunk()
         {
-            OnShipSunk(new ShipSunkEventArgs());
+            OnShipSunk(new ShipSunkEventArgs(this));
         }
 
         protected virtual void OnShipSunk(ShipSunkEventArgs shipSunkEventArgs)

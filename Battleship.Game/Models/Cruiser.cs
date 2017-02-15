@@ -7,6 +7,7 @@
     {
         public Cruiser(Coordinate start, Coordinate end) : base(start, end, 3)
         {
+            Name = "Cruiser";
         }
     }
 }

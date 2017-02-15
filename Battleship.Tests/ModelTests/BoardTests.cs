@@ -1,4 +1,6 @@
-﻿using Battleship.Game.Exceptions;
+﻿using System.CodeDom;
+using System.Linq;
+using Battleship.Game.Exceptions;
 using Battleship.Game.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -72,6 +74,40 @@ namespace Battleship.Tests.ModelTests
             var ship = new Cruiser(new Coordinate(-3, 3), new Coordinate(-1, 3));
 
             board.PlaceShip(ship);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(BadShotException))]
+        public void FiringTwoShotsAtSameCoordinateThrowsBadShotException()
+        {
+            var board = new Board("", 8, 8);
+
+            var ship = new Cruiser(new Coordinate(1,1), new Coordinate(1,3));
+
+            board.PlaceShip(ship);
+
+            board.FireShot(new Coordinate(2,2));
+            board.FireShot(new Coordinate(2,2));
+        }
+
+        [TestMethod]
+        public void GetBoardStateReturnsExpectedData()
+        {
+            var board = new Board("", 8, 8);
+
+            var ship = new Cruiser(new Coordinate(1, 1), new Coordinate(1, 3));
+
+            board.PlaceShip(ship);
+
+            board.FireShot(new Coordinate(1, 1));
+            board.FireShot(new Coordinate(2, 1));
+            board.FireShot(new Coordinate(3, 1));
+
+            var boardState = board.GetBoardState();
+
+            Assert.AreEqual(boardState.Count, 3);
+            Assert.AreEqual(boardState.Count(x => x.Value == ShotResult.Hit), 1);
+            Assert.AreEqual(boardState.Count(x => x.Value == ShotResult.Miss), 2);
         }
     }
 }

@@ -48,11 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bindings.cs" />
+    <Compile Include="BoardRenderer.cs" />
     <Compile Include="CoordinateTranslator.cs" />
     <Compile Include="Exceptions\InvalidInputException.cs" />
-    <Compile Include="GameOrchestrator.cs" />
+    <Compile Include="GamePlayOrchestrator.cs" />
+    <Compile Include="IBoardRenderer.cs" />
     <Compile Include="ICoordinateTranslator.cs" />
-    <Compile Include="IGameOrchestrator.cs" />
+    <Compile Include="IGamePlayOrchestrator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

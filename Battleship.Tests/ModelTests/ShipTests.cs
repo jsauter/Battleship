@@ -10,6 +10,14 @@ namespace Battleship.Tests.ModelTests
     public class ShipTests
     {
         [TestMethod]
+        public void CreatingACruiserHasTheRightNameString()
+        {
+            var cruiser = new Cruiser(new Coordinate(1, 1), new Coordinate(1, 3));
+
+            Assert.AreEqual(cruiser.Name, "Cruiser");
+        }
+
+        [TestMethod]
         public void CreateCruiserVertical()
         {
             var cruiser = new Cruiser(new Coordinate(1, 1), new Coordinate(1, 3));
@@ -60,6 +68,13 @@ namespace Battleship.Tests.ModelTests
         public void ShipYCoordinatesTooBigForClassException()
         {
             var cruiser = new Cruiser(new Coordinate(1, 1), new Coordinate(1, 4));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ShipCoordinatesInvalidException))]
+        public void DiagnolShipIsNotValid()
+        {
+            var cruiser = new Cruiser(new Coordinate(1, 1), new Coordinate(3, 3));
         }
 
         [TestMethod]

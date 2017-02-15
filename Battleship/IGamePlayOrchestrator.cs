@@ -1,6 +1,6 @@
 ﻿namespace Battleship
 {
-    public interface IGameOrchestrator
+    public interface IGamePlayOrchestrator
     {
         void StartGame();
     }

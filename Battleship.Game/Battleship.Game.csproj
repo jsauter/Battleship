@@ -46,16 +46,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\ShipCoordinatesInvalidException.cs" />
-    <Compile Include="Exceptions\ShotOffBoardException.cs" />
+    <Compile Include="Exceptions\BadShotException.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="IGameState.cs" />
     <Compile Include="Models\Board.cs" />
     <Compile Include="Models\Coordinate.cs" />
     <Compile Include="Models\Cruiser.cs" />
+    <Compile Include="Models\GameOverEventArgs.cs" />
     <Compile Include="Models\IBoard.cs" />
     <Compile Include="Models\IShip.cs" />
     <Compile Include="Models\ShipBase.cs" />
     <Compile Include="Models\ShipSunkEventArgs.cs" />
+    <Compile Include="Models\ShotResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

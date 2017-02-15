@@ -6,8 +6,9 @@ namespace Battleship
     {
         public override void Load()
         {
-            Bind<IGameOrchestrator>().To<GameOrchestrator>();
+            Bind<IGamePlayOrchestrator>().To<GamePlayOrchestrator>();
             Bind<ICoordinateTranslator>().To<CoordinateTranslator>();
+            Bind<IBoardRenderer>().To<BoardRenderer>();
         }
     }
 }
