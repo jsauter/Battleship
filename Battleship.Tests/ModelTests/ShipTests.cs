@@ -197,16 +197,55 @@ namespace Battleship.Tests.ModelTests
             Assert.IsFalse(cruiser.IsHit(miss12));
         }
 
-        // This tests that an event is propogated when a ship is sunk
-
+        // Tests when the ship is 'forward' meaning the start is to the left of the end on horizontal
         [TestMethod]
-        public void SinkingAShipRaisesEvent()
+        public void ForwardSinkingAShipRaisesEvent()
         {
             var receivedEvents = new List<string>();
 
-            var ship = new Cruiser(new Coordinate(1,1), new Coordinate(1,3));
+            var ship = new Cruiser(new Coordinate(1,1), new Coordinate(3,1));
 
             ship.ShipSunk += delegate(object sender, EventArgs e)
+            {
+                receivedEvents.Add("Ship sunk!");
+            };
+
+            ship.IsHit(new Coordinate(1, 1));
+            ship.IsHit(new Coordinate(2, 1));
+            ship.IsHit(new Coordinate(3, 1));
+
+            Assert.AreEqual(1, receivedEvents.Count);            
+        }
+
+        // Tests when the ship is 'backwards' meaning the start is to the right of the end on horizontal
+        [TestMethod]
+        public void BackwardShipSinkingRaisesEvent()
+        {
+            var receivedEvents = new List<string>();
+
+            var ship = new Cruiser(new Coordinate(3, 1), new Coordinate(1, 1));
+
+            ship.ShipSunk += delegate (object sender, EventArgs e)
+            {
+                receivedEvents.Add("Ship sunk!");
+            };
+
+            ship.IsHit(new Coordinate(1, 1));
+            ship.IsHit(new Coordinate(2, 1));
+            ship.IsHit(new Coordinate(3, 1));
+
+            Assert.AreEqual(1, receivedEvents.Count);
+        }
+
+        // Tests when the ship is 'forward' meaning the start is to the left of the end on horizontal
+        [TestMethod]
+        public void RightsideUpSinkingAShipRaisesEvent()
+        {
+            var receivedEvents = new List<string>();
+
+            var ship = new Cruiser(new Coordinate(1, 1), new Coordinate(1, 3));
+
+            ship.ShipSunk += delegate (object sender, EventArgs e)
             {
                 receivedEvents.Add("Ship sunk!");
             };
@@ -215,7 +254,27 @@ namespace Battleship.Tests.ModelTests
             ship.IsHit(new Coordinate(1, 2));
             ship.IsHit(new Coordinate(1, 3));
 
-            Assert.AreEqual(1, receivedEvents.Count);            
-        }        
+            Assert.AreEqual(1, receivedEvents.Count);
+        }
+
+        // Tests when the ship is 'backwards' meaning the start is to the right of the end on horizontal
+        [TestMethod]
+        public void UpsidedDownShipSinkingRaisesEvent()
+        {
+            var receivedEvents = new List<string>();
+
+            var ship = new Cruiser(new Coordinate(1, 3), new Coordinate(1, 1));
+
+            ship.ShipSunk += delegate (object sender, EventArgs e)
+            {
+                receivedEvents.Add("Ship sunk!");
+            };
+
+            ship.IsHit(new Coordinate(1, 1));
+            ship.IsHit(new Coordinate(1, 2));
+            ship.IsHit(new Coordinate(1, 3));
+
+            Assert.AreEqual(1, receivedEvents.Count);
+        }
     }
 }

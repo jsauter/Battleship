@@ -79,11 +79,10 @@ namespace Battleship.Game.Models
 
         public bool IsHit(Coordinate shotCoordinate)
         {
-            var rectangle = new Rectangle(Start.X, Start.Y, Start.Y - End.Y != 0 ? 1 : Length, Start.X - End.X != 0 ? 1 : Length);
-
-            var isHit = rectangle.Contains(shotCoordinate.X, shotCoordinate.Y);
-
-            if (isHit)
+            if (((Start.X <= shotCoordinate.X && shotCoordinate.X <= End.X) ||
+                 (Start.X >= shotCoordinate.X && End.X <= shotCoordinate.X)) &&
+                ((Start.Y <= shotCoordinate.Y && shotCoordinate.Y <= End.Y) ||
+                 (Start.Y >= shotCoordinate.Y && End.Y <= shotCoordinate.Y)))
             {
                 _hitCount++;
 
@@ -91,9 +90,11 @@ namespace Battleship.Game.Models
                 {
                     NotifyShipSunk();
                 }
-            }
 
-            return isHit;
+                return true;
+            }            
+
+            return false;
         }
 
         public event EventHandler ShipSunk;
