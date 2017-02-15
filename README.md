@@ -6,7 +6,7 @@ This is my implementation of the Battleship game.
 
 To run the application just build the solution (or use MSBuild) and run the exe out of the console project.  As per the requirements document you can place one battle ship (size 3 cruiser) either horizontally or vertically.
 
-Tests are currently all passing. I have covered a lot of sunny day scenarios as well as a bunch of edge cases and exceptions.
+Tests are currently all passing. I have covered a lot of sunny day scenarios as well as a bunch of edge cases and exceptions. Coverage for the entire solution is above 85%.  
 
 ##Architecture
 
