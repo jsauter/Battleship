@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Battleship.Game;
+using Battleship.Game.Exceptions;
 using Battleship.Game.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -132,6 +133,18 @@ namespace Battleship.Tests
             gameState.FireShot("Player 1", new Coordinate(1, 3));
 
             Assert.IsTrue(gameState.IsGameOver);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(BoardException))]
+        public void AddingTooManyBoardsCausesException()
+        {
+            var gameState = new GameState();
+            
+            gameState.AddBoard("Player 1");
+            gameState.AddBoard("Player 2");
+            gameState.AddBoard("Player 3");
+
         }
     }
 }

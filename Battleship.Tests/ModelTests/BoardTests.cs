@@ -8,7 +8,16 @@ namespace Battleship.Tests.ModelTests
 {
     [TestClass]
     public class BoardTests
-    {
+    {       
+        [TestMethod]
+        [ExpectedException(typeof(BadShotException))]
+        public void CannotFireShotOffBoard()
+        {
+            var board = new Board("", 8, 8);
+            
+            board.FireShot(new Coordinate(9,9));    
+        }
+
         [TestMethod]
         public void CanPlaceOneShip()
         {

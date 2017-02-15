@@ -32,7 +32,8 @@ namespace Battleship.Game.Models
         }
 
         /// <summary>
-        /// Validation handles length and if the ship is horizontal or vertical
+        /// Validation handles length and if the ship is horizontal or vertical as well as the right length for the placement parameters we have input
+        /// Ships should someday check if they are being palced on top of other ships
         /// </summary>
         private void ValidateShip()
         {

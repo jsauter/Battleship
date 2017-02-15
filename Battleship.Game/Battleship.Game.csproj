@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\BoardException.cs" />
     <Compile Include="Exceptions\ShipCoordinatesInvalidException.cs" />
     <Compile Include="Exceptions\BadShotException.cs" />
     <Compile Include="GameState.cs" />

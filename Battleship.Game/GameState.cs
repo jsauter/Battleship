@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Battleship.Game.Exceptions;
 using Battleship.Game.Models;
 
 namespace Battleship.Game
@@ -33,6 +34,11 @@ namespace Battleship.Game
         /// <param name="playerName">The Name of the player</param>
         public void AddBoard(string playerName)
         {
+            if (_boards.Count == 2)
+            {
+                throw new BoardException("Maximum number of boards reached.");
+            }
+
             var newBoard = new Board(playerName, 8, 8);
             newBoard.GameOver += NewBoard_GameOver;
             _boards.Add(newBoard);

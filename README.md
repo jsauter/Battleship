@@ -10,7 +10,9 @@ Tests are currently all passing. I have covered a lot of sunny day scenarios as 
 
 ##Architecture
 
-I approached this application like games I have worked on in the past. There is an executable layer that runs a game engine in the layer below it. Dependencies are injected in using the ninject IoC container.
+I approached this application like games I have worked on in the past. There is an executable layer that runs a game engine in the layer below it. Game state is managed independently from the UI. 
+
+Dependencies are injected in using the a IoC container.
 
 There was no need for a repository or gateway layer in this application so the domain remained pretty flat. 
 
@@ -31,6 +33,12 @@ I decided to use an orchestrator type class in the UI to manage the workflow for
 User input (because it is textual in this case) is translated to cartesian cordinates that can be represented in the grid with ints. There was no sense in maintaing two arrays when it could be calculated. To do this, I converted the alpha chars to their numeric representaion in the CoordinateTranslator.
 
 Feedback to the UI thread for bad data entry is done via exceptions (and handling them). This might not be the most performant way of doing it, but I think it worked well as it simplified what needed to be returned and performance for this application is not a major requirment.
+
+##Assumptions
+
+1) As per the requirements, since there is no need to add a second ship to the board, I did not validate for intersects on placement.
+2) We check that there are only 2 players and if we try to add more, we throw an exceptions
+3) There is only one type of ship right now. If we want to add more in the future there will be a UI change as well as the need to build a ship factory
 
 ##3rd party libraries used
 
