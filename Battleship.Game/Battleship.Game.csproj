@@ -50,6 +50,7 @@
     <Compile Include="Exceptions\BadShotException.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="IGameState.cs" />
+    <Compile Include="ISettingService.cs" />
     <Compile Include="Models\Board.cs" />
     <Compile Include="Models\Coordinate.cs" />
     <Compile Include="Models\Cruiser.cs" />

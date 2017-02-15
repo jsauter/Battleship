@@ -3,15 +3,28 @@ using Battleship.Game;
 using Battleship.Game.Exceptions;
 using Battleship.Game.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Battleship.Tests
 {
     [TestClass]
     public class GameStateTests
     {
+        private Mock<ISettingService> _settingService;
+        
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            _settingService = new Mock<ISettingService>();
+            _settingService.Setup(x => x.BoardLength).Returns(8);
+            _settingService.Setup(x => x.BoardWidth).Returns(8);
+            _settingService.Setup(x => x.NumberOfPlayers).Returns(2);
+        }
+
         public void CanAddBoardToGame()
         {
-            var gameState = new GameState(); 
+            var gameState = new GameState(_settingService.Object); 
             
             gameState.AddBoard("Player 1");
             
@@ -21,7 +34,7 @@ namespace Battleship.Tests
         [TestMethod]
         public void CanAddShipToGame()
         {
-            var gameState = new GameState();
+            var gameState = new GameState(_settingService.Object);
 
             gameState.AddBoard("Player 1");
 
@@ -33,7 +46,7 @@ namespace Battleship.Tests
         [TestMethod]
         public void CanFireAShotAtBoard()
         {
-            var gameState = new GameState();
+            var gameState = new GameState(_settingService.Object);
 
             gameState.AddBoard("Player 1");
 
@@ -47,7 +60,7 @@ namespace Battleship.Tests
         [TestMethod]
         public void GetNextPlayerReturnsNextPlayer()
         {
-            var gameState = new GameState();
+            var gameState = new GameState(_settingService.Object);
 
             gameState.AddBoard("Player 1");
             gameState.AddBoard("Player 2");
@@ -62,7 +75,7 @@ namespace Battleship.Tests
         [TestMethod]
         public void GetPlayersNameReturnsValues()
         {
-            var gameState = new GameState();
+            var gameState = new GameState(_settingService.Object);
 
             gameState.AddBoard("Player 1");
             gameState.AddBoard("Player 2");
@@ -75,7 +88,7 @@ namespace Battleship.Tests
         [TestMethod]
         public void GetABoardWithAValidPlayer()
         {
-            var gameState = new GameState();
+            var gameState = new GameState(_settingService.Object);
 
             gameState.AddBoard("Player 1");
             gameState.AddBoard("Player 2");
@@ -89,7 +102,7 @@ namespace Battleship.Tests
         [TestMethod]
         public void GetNoBoardWithInvalidPlayer()
         {
-            var gameState = new GameState();
+            var gameState = new GameState(_settingService.Object);
 
             gameState.AddBoard("Player 1");
             gameState.AddBoard("Player 2");
@@ -102,7 +115,7 @@ namespace Battleship.Tests
         [TestMethod]
         public void GettingOpponentReturnsCorrectPlayer()
         {
-            var gameState = new GameState();
+            var gameState = new GameState(_settingService.Object);
 
             gameState.AddBoard("Player 1");
             gameState.AddBoard("Player 2");
@@ -119,7 +132,7 @@ namespace Battleship.Tests
         [TestMethod]
         public void BoardPlayedToEndResultsInGameOver()
         {
-            var gameState = new GameState();
+            var gameState = new GameState(_settingService.Object);
 
             gameState.AddBoard("Player 1");
 
@@ -139,7 +152,7 @@ namespace Battleship.Tests
         [ExpectedException(typeof(BoardException))]
         public void AddingTooManyBoardsCausesException()
         {
-            var gameState = new GameState();
+            var gameState = new GameState(_settingService.Object);
             
             gameState.AddBoard("Player 1");
             gameState.AddBoard("Player 2");

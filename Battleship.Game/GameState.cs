@@ -1,28 +1,45 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using Battleship.Game.Exceptions;
 using Battleship.Game.Models;
 
 namespace Battleship.Game
 {
+    /// <summary>
+    /// Maintains the state the of the game
+    /// </summary>
     public class GameState : IGameState
     {
-        private List<Board> _boards;
+        private readonly ISettingService _settingService;
+
+        private readonly List<Board> _boards;
+
         private int _currentPlayerNumber;
 
         public bool IsGameOver { get; protected set; }
 
-        public GameState()
+        public GameState(ISettingService settingService)
         {
+            _settingService = settingService;
             _boards = new List<Board>();
             _currentPlayerNumber = 1;
         }
 
+        /// <summary>
+        /// Gets list of player names in the game
+        /// </summary>
+        /// <returns>List of player names</returns>
         public IEnumerable<string> GetPlayerNames()
         {
             return _boards.Select(x => x.PlayerName);
         }
 
+        /// <summary>
+        /// Gets a board for a player
+        /// </summary>
+        /// <param name="playerName">The player name you are looking for</param>
+        /// <returns>The player's board</returns>
         public Board GetBoard(string playerName)
         {
             return _boards.FirstOrDefault(x => x.PlayerName == playerName);
@@ -34,12 +51,12 @@ namespace Battleship.Game
         /// <param name="playerName">The Name of the player</param>
         public void AddBoard(string playerName)
         {
-            if (_boards.Count == 2)
+            if (_boards.Count == _settingService.NumberOfPlayers)
             {
                 throw new BoardException("Maximum number of boards reached.");
             }
 
-            var newBoard = new Board(playerName, 8, 8);
+            var newBoard = new Board(playerName, _settingService.BoardLength, _settingService.BoardWidth);
             newBoard.GameOver += NewBoard_GameOver;
             _boards.Add(newBoard);
         }
@@ -110,10 +127,10 @@ namespace Battleship.Game
         {
             // increment player number unless it is second player, then send it back to 1
             _currentPlayerNumber++;
-
-            // we don't support more than 2 players
-            if (_currentPlayerNumber == 3)
+            
+            if (_currentPlayerNumber == _boards.Count + 1)
             {
+                // set player back to player 1
                 _currentPlayerNumber = 1;
             }
         }

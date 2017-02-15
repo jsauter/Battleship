@@ -7,7 +7,7 @@ namespace Battleship.Dependencies
     {
         public override void Load()
         {
-            Bind<IGameState>().To<GameState>();
+            Bind<IGameState>().To<GameState>().InSingletonScope();
         }
     }
 }

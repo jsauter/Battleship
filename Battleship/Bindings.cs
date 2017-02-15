@@ -1,4 +1,5 @@
-﻿using Ninject.Modules;
+﻿using Battleship.Game;
+using Ninject.Modules;
 
 namespace Battleship
 {
@@ -9,6 +10,7 @@ namespace Battleship
             Bind<IGamePlayOrchestrator>().To<GamePlayOrchestrator>();
             Bind<ICoordinateTranslator>().To<CoordinateTranslator>();
             Bind<IBoardRenderer>().To<BoardRenderer>();
+            Bind<ISettingService>().To<SettingService>();
         }
     }
 }
