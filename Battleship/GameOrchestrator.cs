@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Battleship.Game;
 using Battleship.Game.Models;
 
 namespace Battleship
@@ -10,13 +11,12 @@ namespace Battleship
     public class GameOrchestrator : IGameOrchestrator
     {
         private readonly ICoordinateTranslator _coordinateTranslator;
+        private readonly IGameState _gameState;
 
-        private List<Board> _gameBoards;
-
-        public GameOrchestrator(ICoordinateTranslator coordinateTranslator)
+        public GameOrchestrator(ICoordinateTranslator coordinateTranslator, IGameState gameState)
         {
             _coordinateTranslator = coordinateTranslator;
-            _gameBoards = new List<Board>();
+            _gameState = gameState;
         }
 
         public void StartGame()
@@ -25,8 +25,8 @@ namespace Battleship
 
             // here we are taking in the user input for ship placement and translating them to board coordinates 
             for (int i = 1; i < 3; i++)
-            {
-                var newBoard = new Board($"Player{0}", 8, 8);                
+            {         
+                _gameState.AddBoard($"Player{i}");
 
                 while (true)
                 {
@@ -38,8 +38,8 @@ namespace Battleship
                     {
                         var start = _coordinateTranslator.TranslateCoordinate(userInputString[0]);
                         var end = _coordinateTranslator.TranslateCoordinate(userInputString[1]);
-
-                        newBoard.Ships.Add(new Cruiser(start, end));
+                        
+                        _gameState.AddShip($"Player{i}", start, end);
 
                         break;
                     }
@@ -50,16 +50,15 @@ namespace Battleship
 
 
                 }
-
-                _gameBoards.Add(newBoard);
             }
 
             // now we take in user input over and over again until someone wins
-
             while (true)
             {
-                
+                Console.WriteLine($"Player {0}");
             }
+
+            // print output
 
             Console.WriteLine("Game over...");
             Console.ReadLine();

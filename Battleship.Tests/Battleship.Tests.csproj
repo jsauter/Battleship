@@ -56,6 +56,7 @@
     <Compile Include="ModelTests\ShipTests.cs" />
     <Compile Include="ModelTests\BoardTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GameStateTests.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

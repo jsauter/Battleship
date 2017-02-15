@@ -47,6 +47,8 @@
   <ItemGroup>
     <Compile Include="Exceptions\ShipCoordinatesInvalidException.cs" />
     <Compile Include="Exceptions\ShotOffBoardException.cs" />
+    <Compile Include="GameState.cs" />
+    <Compile Include="IGameState.cs" />
     <Compile Include="Models\Board.cs" />
     <Compile Include="Models\Coordinate.cs" />
     <Compile Include="Models\Cruiser.cs" />
