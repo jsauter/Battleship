@@ -25,7 +25,13 @@ namespace Battleship
             var stringBuilder = new StringBuilder();
 
             // write row header
-            stringBuilder.Append("  A B C D E F G H");
+            stringBuilder.Append("  ");
+
+            for (int i = 1; i < _settingService.BoardWidth + 1; i++)
+            {
+                stringBuilder.Append(Convert.ToChar(i + 64) + " ");
+            }
+
             stringBuilder.Append(Environment.NewLine);
 
             // go over the board rows

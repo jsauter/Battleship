@@ -28,18 +28,11 @@ namespace Battleship.Tests.ConsoleTests
             // testing the right number of rows come back
             Assert.AreEqual(boardRendererRows.Length, 10);
 
-            // testing the correct width of rows
-            Assert.AreEqual(boardRendererRows[0].Length, 17);
-            Assert.AreEqual(boardRendererRows[1].Length, 18);
-            Assert.AreEqual(boardRendererRows[2].Length, 18);
-            Assert.AreEqual(boardRendererRows[3].Length, 18);
-            Assert.AreEqual(boardRendererRows[4].Length, 18);
-            Assert.AreEqual(boardRendererRows[5].Length, 18);
-            Assert.AreEqual(boardRendererRows[6].Length, 18);
-            Assert.AreEqual(boardRendererRows[7].Length, 18);
-            Assert.AreEqual(boardRendererRows[8].Length, 18);
-            Assert.AreEqual(boardRendererRows[9].Length, 0);
-
+            for (int i = 0; i <= 8; i++)
+            {
+                Assert.AreEqual(boardRendererRows[i].Length, 18); 
+            }
+            
             // testing to make sure shots are coming through
             Assert.IsTrue(boardRendererRows[1].Contains("S"));
             Assert.IsFalse(boardRendererRows[1].Contains("X"));
