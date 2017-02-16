@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Text;
+using Battleship.Game;
 using Battleship.Game.Models;
 
 namespace Battleship
@@ -10,20 +11,30 @@ namespace Battleship
     /// </summary>
     public class BoardRenderer : IBoardRenderer
     {
+        private readonly ISettingService _settingService;
+
+        public BoardRenderer(ISettingService settingService)
+        {
+            _settingService = settingService;
+        }
+
         public string RenderBoard(Board board)
         {
             var boardState = board.GetBoardState();
             
             var stringBuilder = new StringBuilder();
 
+            // write row header
             stringBuilder.Append("  A B C D E F G H");
             stringBuilder.Append(Environment.NewLine);
 
-            for (int i = 1; i < 9; i++)
+            // go over the board rows
+            for (int i = 1; i < _settingService.BoardHeight + 1; i++)
             {
                 stringBuilder.Append($"{i} ");
                 
-                for (int j = 1; j < 9; j++)
+                // go over the board columns
+                for (int j = 1; j < _settingService.BoardWidth + 1; j++)
                 {
                     var shot = boardState.Where(x => x.Key.X == j && x.Key.Y == i).Take(1).ToList();
 

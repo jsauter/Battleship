@@ -5,7 +5,7 @@
     /// </summary>
     public interface ISettingService
     {
-        int BoardLength { get; }
+        int BoardHeight { get; }
 
         int BoardWidth { get; }
 

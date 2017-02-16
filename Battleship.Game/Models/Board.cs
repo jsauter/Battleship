@@ -85,9 +85,13 @@ namespace Battleship.Game.Models
                 throw new BadShotException("A shot has already been fired at that coordinate.");
             }
 
-            foreach (var ship in Ships)
+            if (Ships.FirstOrDefault(s => s.WasShipHit(shotCoordinate)) != null)
             {
-                _boardState.Add(shotCoordinate, ship.IsHit(shotCoordinate) ? ShotResult.Hit : ShotResult.Miss);
+                _boardState.Add(shotCoordinate, ShotResult.Hit);
+            }
+            else
+            {
+                _boardState.Add(shotCoordinate, ShotResult.Miss);
             }
         }
 

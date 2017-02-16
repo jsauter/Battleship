@@ -8,7 +8,7 @@ namespace Battleship
     /// </summary>
     public class SettingService : ISettingService
     {
-        public int BoardLength { get; }
+        public int BoardHeight { get; }
 
         public int BoardWidth { get; }
 
@@ -18,7 +18,7 @@ namespace Battleship
         {
             var appSettings = ConfigurationManager.AppSettings;
 
-            BoardLength = string.IsNullOrEmpty(appSettings["BoardLength"]) ? 8 : int.Parse(appSettings["BoardLength"]);
+            BoardHeight = string.IsNullOrEmpty(appSettings["BoardHeight"]) ? 8 : int.Parse(appSettings["BoardHeight"]);
             BoardWidth = string.IsNullOrEmpty(appSettings["BoardWidth"]) ? 8 : int.Parse(appSettings["BoardWidth"]); 
             NumberOfPlayers = string.IsNullOrEmpty(appSettings["MaxNumberOfPlayers"]) ? 8 : int.Parse(appSettings["MaxNumberOfPlayers"]);
         }

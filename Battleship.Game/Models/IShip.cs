@@ -7,7 +7,7 @@ namespace Battleship.Game.Models
     /// </summary>
     public interface IShip
     {
-        bool IsHit(Coordinate shotCoordinate);
+        bool WasShipHit(Coordinate shotCoordinate);
 
         event EventHandler ShipSunk;
     }

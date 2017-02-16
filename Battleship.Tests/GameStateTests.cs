@@ -2,25 +2,15 @@
 using Battleship.Game;
 using Battleship.Game.Exceptions;
 using Battleship.Game.Models;
+using Battleship.Tests.ConsoleTests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
 namespace Battleship.Tests
 {
     [TestClass]
-    public class GameStateTests
+    public class GameStateTests : TestsBase
     {
-        private Mock<ISettingService> _settingService;
-
-        [TestInitialize]
-        public void Initialize()
-        {
-            _settingService = new Mock<ISettingService>();
-            _settingService.Setup(x => x.BoardLength).Returns(8);
-            _settingService.Setup(x => x.BoardWidth).Returns(8);
-            _settingService.Setup(x => x.NumberOfPlayers).Returns(2);
-        }
-
         public void CanAddBoardToGame()
         {
             var gameState = new GameState(_settingService.Object); 

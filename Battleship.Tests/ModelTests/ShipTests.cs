@@ -83,7 +83,7 @@ namespace Battleship.Tests.ModelTests
             var cruiser = new Cruiser(new Coordinate(1, 1), new Coordinate(1, 3));
             var shot = new Coordinate(2, 6);
 
-            Assert.IsFalse(cruiser.IsHit(shot));
+            Assert.IsFalse(cruiser.WasShipHit(shot));
         }
 
         [TestMethod]
@@ -92,15 +92,15 @@ namespace Battleship.Tests.ModelTests
             var cruiser = new Cruiser(new Coordinate(1, 1), new Coordinate(1, 3));
             var shot1 = new Coordinate(1, 2);
 
-            Assert.IsTrue(cruiser.IsHit(shot1));
+            Assert.IsTrue(cruiser.WasShipHit(shot1));
 
             var shot2 = new Coordinate(1, 1);
 
-            Assert.IsTrue(cruiser.IsHit(shot2));
+            Assert.IsTrue(cruiser.WasShipHit(shot2));
 
             var shot3 = new Coordinate(1, 3);
 
-            Assert.IsTrue(cruiser.IsHit(shot3));
+            Assert.IsTrue(cruiser.WasShipHit(shot3));
         }
 
         /// <summary>
@@ -115,9 +115,9 @@ namespace Battleship.Tests.ModelTests
             var hit2 = new Coordinate(3, 2);
             var hit3 = new Coordinate(4, 2);
 
-            Assert.IsTrue(cruiser.IsHit(hit1));
-            Assert.IsTrue(cruiser.IsHit(hit2));
-            Assert.IsTrue(cruiser.IsHit(hit3));
+            Assert.IsTrue(cruiser.WasShipHit(hit1));
+            Assert.IsTrue(cruiser.WasShipHit(hit2));
+            Assert.IsTrue(cruiser.WasShipHit(hit3));
             
             // below misses
             var miss1 = new Coordinate(1, 1);
@@ -137,18 +137,18 @@ namespace Battleship.Tests.ModelTests
             var miss11 = new Coordinate(4, 3);
             var miss12 = new Coordinate(5, 3);
 
-            Assert.IsFalse(cruiser.IsHit(miss1));
-            Assert.IsFalse(cruiser.IsHit(miss2));
-            Assert.IsFalse(cruiser.IsHit(miss3));
-            Assert.IsFalse(cruiser.IsHit(miss4));
-            Assert.IsFalse(cruiser.IsHit(miss5));
-            Assert.IsFalse(cruiser.IsHit(miss6));
-            Assert.IsFalse(cruiser.IsHit(miss7));
-            Assert.IsFalse(cruiser.IsHit(miss8));
-            Assert.IsFalse(cruiser.IsHit(miss9));
-            Assert.IsFalse(cruiser.IsHit(miss10));
-            Assert.IsFalse(cruiser.IsHit(miss11));
-            Assert.IsFalse(cruiser.IsHit(miss12));
+            Assert.IsFalse(cruiser.WasShipHit(miss1));
+            Assert.IsFalse(cruiser.WasShipHit(miss2));
+            Assert.IsFalse(cruiser.WasShipHit(miss3));
+            Assert.IsFalse(cruiser.WasShipHit(miss4));
+            Assert.IsFalse(cruiser.WasShipHit(miss5));
+            Assert.IsFalse(cruiser.WasShipHit(miss6));
+            Assert.IsFalse(cruiser.WasShipHit(miss7));
+            Assert.IsFalse(cruiser.WasShipHit(miss8));
+            Assert.IsFalse(cruiser.WasShipHit(miss9));
+            Assert.IsFalse(cruiser.WasShipHit(miss10));
+            Assert.IsFalse(cruiser.WasShipHit(miss11));
+            Assert.IsFalse(cruiser.WasShipHit(miss12));
         }
 
         [TestMethod]
@@ -160,9 +160,9 @@ namespace Battleship.Tests.ModelTests
             var hit2 = new Coordinate(2, 3);
             var hit3 = new Coordinate(2, 4);
 
-            Assert.IsTrue(cruiser.IsHit(hit1));
-            Assert.IsTrue(cruiser.IsHit(hit2));
-            Assert.IsTrue(cruiser.IsHit(hit3));
+            Assert.IsTrue(cruiser.WasShipHit(hit1));
+            Assert.IsTrue(cruiser.WasShipHit(hit2));
+            Assert.IsTrue(cruiser.WasShipHit(hit3));
 
             // left misses
             var miss1 = new Coordinate(1, 1);
@@ -182,18 +182,18 @@ namespace Battleship.Tests.ModelTests
             var miss11 = new Coordinate(3, 4);
             var miss12 = new Coordinate(3, 5);
 
-            Assert.IsFalse(cruiser.IsHit(miss1));
-            Assert.IsFalse(cruiser.IsHit(miss2));
-            Assert.IsFalse(cruiser.IsHit(miss3));
-            Assert.IsFalse(cruiser.IsHit(miss4));
-            Assert.IsFalse(cruiser.IsHit(miss5));
-            Assert.IsFalse(cruiser.IsHit(miss6));
-            Assert.IsFalse(cruiser.IsHit(miss7));
-            Assert.IsFalse(cruiser.IsHit(miss8));
-            Assert.IsFalse(cruiser.IsHit(miss9));
-            Assert.IsFalse(cruiser.IsHit(miss10));
-            Assert.IsFalse(cruiser.IsHit(miss11));
-            Assert.IsFalse(cruiser.IsHit(miss12));
+            Assert.IsFalse(cruiser.WasShipHit(miss1));
+            Assert.IsFalse(cruiser.WasShipHit(miss2));
+            Assert.IsFalse(cruiser.WasShipHit(miss3));
+            Assert.IsFalse(cruiser.WasShipHit(miss4));
+            Assert.IsFalse(cruiser.WasShipHit(miss5));
+            Assert.IsFalse(cruiser.WasShipHit(miss6));
+            Assert.IsFalse(cruiser.WasShipHit(miss7));
+            Assert.IsFalse(cruiser.WasShipHit(miss8));
+            Assert.IsFalse(cruiser.WasShipHit(miss9));
+            Assert.IsFalse(cruiser.WasShipHit(miss10));
+            Assert.IsFalse(cruiser.WasShipHit(miss11));
+            Assert.IsFalse(cruiser.WasShipHit(miss12));
         }
 
         // Tests when the ship is 'forward' meaning the start is to the left of the end on horizontal
@@ -209,9 +209,9 @@ namespace Battleship.Tests.ModelTests
                 receivedEvents.Add("Ship sunk!");
             };
 
-            ship.IsHit(new Coordinate(1, 1));
-            ship.IsHit(new Coordinate(2, 1));
-            ship.IsHit(new Coordinate(3, 1));
+            ship.WasShipHit(new Coordinate(1, 1));
+            ship.WasShipHit(new Coordinate(2, 1));
+            ship.WasShipHit(new Coordinate(3, 1));
 
             Assert.AreEqual(1, receivedEvents.Count);            
         }
@@ -229,9 +229,9 @@ namespace Battleship.Tests.ModelTests
                 receivedEvents.Add("Ship sunk!");
             };
 
-            ship.IsHit(new Coordinate(1, 1));
-            ship.IsHit(new Coordinate(2, 1));
-            ship.IsHit(new Coordinate(3, 1));
+            ship.WasShipHit(new Coordinate(1, 1));
+            ship.WasShipHit(new Coordinate(2, 1));
+            ship.WasShipHit(new Coordinate(3, 1));
 
             Assert.AreEqual(1, receivedEvents.Count);
         }
@@ -249,9 +249,9 @@ namespace Battleship.Tests.ModelTests
                 receivedEvents.Add("Ship sunk!");
             };
 
-            ship.IsHit(new Coordinate(1, 1));
-            ship.IsHit(new Coordinate(1, 2));
-            ship.IsHit(new Coordinate(1, 3));
+            ship.WasShipHit(new Coordinate(1, 1));
+            ship.WasShipHit(new Coordinate(1, 2));
+            ship.WasShipHit(new Coordinate(1, 3));
 
             Assert.AreEqual(1, receivedEvents.Count);
         }
@@ -269,9 +269,9 @@ namespace Battleship.Tests.ModelTests
                 receivedEvents.Add("Ship sunk!");
             };
 
-            ship.IsHit(new Coordinate(1, 1));
-            ship.IsHit(new Coordinate(1, 2));
-            ship.IsHit(new Coordinate(1, 3));
+            ship.WasShipHit(new Coordinate(1, 1));
+            ship.WasShipHit(new Coordinate(1, 2));
+            ship.WasShipHit(new Coordinate(1, 3));
 
             Assert.AreEqual(1, receivedEvents.Count);
         }

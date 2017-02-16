@@ -28,16 +28,16 @@ namespace Battleship.Game.Models
 
             _hitCount = 0;
 
-            ValidateShip();
+            ValidateShipPlacement();
         }
 
         /// <summary>
         /// Validation handles length and if the ship is horizontal or vertical as well as the right length for the placement parameters we have input
         /// Ships should someday check if they are being placed on top of other ships
         /// </summary>
-        private void ValidateShip()
+        private void ValidateShipPlacement()
         {
-            if (!IsShipHorizontalOrVertical())
+            if (!IsNotDiagonal())
             {
                 throw new ShipCoordinatesInvalidException("Ship not horizontal or vertical");
             }
@@ -55,7 +55,11 @@ namespace Battleship.Game.Models
             return Math.Sqrt(Math.Pow(End.Y - Start.Y, 2) + Math.Pow(End.X - Start.X, 2)) == (Length - 1);
         }
 
-        private bool IsShipHorizontalOrVertical()
+        /// <summary>
+        /// A ship shall not be placed diagonally on a board.  This method validates its slope to calculate if it meets this criteria
+        /// </summary>
+        /// <returns></returns>
+        private bool IsNotDiagonal()
         {
             bool isValid = false;
 
@@ -77,11 +81,12 @@ namespace Battleship.Game.Models
         }
 
         /// <summary>
-        /// Checks if a shot coordinate hits the ship
+        /// Checks if a shot coordinate hits the ship.  The board tracks of shot placement, the ship tracks how many hits it has.  If the hit count equals the 
+        /// ship length, the ship is sunk and we fire an event notifying everyone
         /// </summary>
         /// <param name="shotCoordinate">The coordinate of where the shot was fired</param>
         /// <returns>Boolean representing if it was a successful hit or not</returns>
-        public bool IsHit(Coordinate shotCoordinate)
+        public bool WasShipHit(Coordinate shotCoordinate)
         {
             if (((Start.X <= shotCoordinate.X && shotCoordinate.X <= End.X) ||
                  (Start.X >= shotCoordinate.X && End.X <= shotCoordinate.X)) &&

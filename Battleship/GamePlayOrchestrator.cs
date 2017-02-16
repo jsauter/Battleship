@@ -14,11 +14,14 @@ namespace Battleship
 
         private readonly IBoardRenderer _boardRenderer;
 
-        public GamePlayOrchestrator(ICoordinateTranslator coordinateTranslator, IGameState gameState, IBoardRenderer boardRenderer)
+        private readonly ISettingService _settingService;
+
+        public GamePlayOrchestrator(ICoordinateTranslator coordinateTranslator, IGameState gameState, IBoardRenderer boardRenderer, ISettingService settingService)
         {
             _coordinateTranslator = coordinateTranslator;
             _gameState = gameState;
             _boardRenderer = boardRenderer;
+            _settingService = settingService;
         }
 
         /// <summary>
@@ -29,7 +32,7 @@ namespace Battleship
             Console.WriteLine("Game Starting...");
 
             // here we are taking in the user input for ship placement and translating them to board coordinates 
-            for (int i = 1; i < 3; i++)
+            for (int i = 1; i < _settingService.NumberOfPlayers + 1; i++)
             {
                 var playerName = $"Player {i}";
 

@@ -1,16 +1,18 @@
 ﻿using System;
+using Battleship.Game;
 using Battleship.Game.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Battleship.Tests.ConsoleTests
 {
     [TestClass]
-    public class BoardRendererTests
+    public class BoardRendererTests : TestsBase
     {
         [TestMethod]
         public void CanRenderABoardOfTheRightSize()
         {
-            var boardRender = new BoardRenderer();
+            var boardRender = new BoardRenderer(_settingService.Object);
 
             var board = new Board("Player 1", 8, 8);
 

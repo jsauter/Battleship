@@ -56,7 +56,7 @@ namespace Battleship.Game
                 throw new BoardException("Maximum number of boards reached.");
             }
 
-            var newBoard = new Board(playerName, _settingService.BoardLength, _settingService.BoardWidth);
+            var newBoard = new Board(playerName, _settingService.BoardHeight, _settingService.BoardWidth);
             newBoard.GameOver += NewBoard_GameOver;
             _boards.Add(newBoard);
         }
