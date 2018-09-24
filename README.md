@@ -1,4 +1,4 @@
-#Welcome to Battleship!#
+#Welcome to Battleship!
 
 This is my implementation of the Battleship game.
 
